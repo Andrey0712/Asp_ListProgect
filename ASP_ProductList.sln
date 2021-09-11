@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP_ProductList", "ASP_ProductList\ASP_ProductList.csproj", "{2357E7B3-6E76-4DF6-BB99-8E8F8EE4A1FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2357E7B3-6E76-4DF6-BB99-8E8F8EE4A1FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2357E7B3-6E76-4DF6-BB99-8E8F8EE4A1FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2357E7B3-6E76-4DF6-BB99-8E8F8EE4A1FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2357E7B3-6E76-4DF6-BB99-8E8F8EE4A1FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B3035595-622F-4DB5-B962-9FE5B3D21009}
+	EndGlobalSection
+EndGlobal
