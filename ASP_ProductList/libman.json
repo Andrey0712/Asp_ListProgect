@@ -14,6 +14,14 @@
         "css/bootstrap.min.css",
         "css/bootstrap.css.map"
       ]
+    },
+    {
+      "library": "axios@0.21.4",
+      "destination": "wwwroot/lib/axios/"
+    },
+    {
+      "library": "font-awesome@5.15.4",
+      "destination": "wwwroot/lib/font-awesome/"
     }
   ]
 }

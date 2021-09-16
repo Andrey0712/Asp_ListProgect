@@ -1,11 +1,12 @@
-﻿@model ASP_ProductList.Models.ProductAddViewModel
+﻿@model ASP_ProductList.Models.AddProductViewModel
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Створити продукт</h1>
+@*<h1>Create</h1>*@
 
+<h4>Створення продукту</h4>
 <hr />
 <div class="row">
     <div class="col-md-6">
@@ -21,20 +22,20 @@
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
-
             <div class="mb-3">
-                <label asp-for="Images" class="control-label"></label>
+                <label asp-for="Images" class="form-label">Фото</label>
                 <div class="row" id="contentImage">
                     <div class="col-md-2">
-                        <img src="/img/addimagebtn.png"
-                             id="btnAddImage"
-                             style="cursor:pointer"
-                             width="100%" />
+                        <img src="~/img/addimagebtn.png"
+                        id="btnAddImage"
+                        style="cursor:pointer"
+                        width="100%" />
                     </div>
                 </div>
+
             </div>
 
-            <div class="form-group mt-4">
+            <div class="form-group mt-5">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -45,38 +46,120 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-<script>
-    window.addEventListener("load", async function () {
-        //console.log("load form");
-        let id = 1;
-        $("#btnAddImage").on("click", function () {
-            let imageName = "image" + id;
-            id++;
-            let $file = $(`<input type="file" data-files style="display:none" multiple 
-                            class="form-control"
-                            id="${imageName}"
-                            name="images">`);
-            $contentImage = $("#contentImage");
-            $contentImage.prepend($file);
-            let fileImageUpload = document.getElementById(imageName);
-            fileImageUpload.click();
-            fileImageUpload.onchange = function (e) {
-                for (var i = 0; i < e.target.files.length; i++) {
-                    let fileName = e.target.files[i].name;
-                    console.log("------", fileName);
-                    $("#contentImage").prepend(`
-                            <div class="col-md-2">
-                                <img src="${URL.createObjectURL(e.target.files[i])}"
-                                     width="100%"/>
-                            </div>
-                        `);
+@section Styles{
+    <link href="~/css/style.css" rel="stylesheet" />
+
+}
+
+@section Scripts{
+    <script>
+
+        window.addEventListener("load", async function () {
+            let id = 1;
+            $("#btnAddImage").on("click", function () {
+                let imageName = "image" + id;
+                id++;
+                let $file = $(`<input type="file" data-files style="display:none" multiple
+                                class="form-control"
+                                id="${imageName}"
+                                name="images">`);
+                $("#contentImage").prepend($file);
+
+                document.getElementById(imageName).click();
+                document.getElementById(imageName).onchange = function (e) {
+
+                    for (var i = 0; i < e.target.files.length; i++) {
+
+
+                        //let $fileName = $(`<div class="col-md-6">
+                        //              <span class="file-delete" style="transform: rotate(45deg)"><span>+</span></span>
+                        //            <img src="${URL.createObjectURL(e.target.files[i])}"
+                        //                 width="100%"/> </div>`);
+                        //$("#contentImage").prepend($fileName);
+                        let $div = $(`<div class="col-md-2">`);
+                        let $span = $(` <span class="file-delete" style="transform: rotate(45deg)"><span>+</span></span>`);
+                        let $content = $(`<img src="${URL.createObjectURL(e.target.files[i])}"
+                                         width="100%"/>`);
+                        $div.prepend($span);
+                        $div.prepend($content);
+                        $("#contentImage").prepend($div);
+                        $span.on('click', function (e) {
+                            e.preventDefault();
+                            $(this).closest("div").remove();
+                            let $filedel = $(`<input type="file" data-files style="display:none" multiple
+                                class="form-control"
+                                id="${imageName}"
+                                name="images">`);
+                            $("#contentImage").prepend($filedel);
+                        });
+
+                    }
+
+                };
+
+            });
+        });
+    </script>
+}
+
+
+
+
+
+@*@section Scripts {
+    <script>
+
+
+
+
+
+        window.addEventListener("load", async function () {
+            //console.log("load form");
+            let id = 1;
+            $("#btnAddImage").on("click", function () {
+                let imageName = "image" + id;
+                id++;
+                let $file = $(`<input type="file" data-files style="display:none" multiple
+                                class="form-control"
+                                id="${imageName}"
+                                name="images">`);
+                $contentImage = $("#contentImage");
+                $contentImage.prepend($file);
+                let fileImageUpload = document.getElementById(imageName);
+                fileImageUpload.click();
+                fileImageUpload.onchange = function (e) {
+                    $span = $(`<span><i class="delete far fa-lg fa-calendar-times"></i></span>`);
+                    $span.on("click", function (e) {
+                        $el = $(e.target);
+                        $div = $el.closest("div");
+                        $div.remove();
+                        $file.remove();
+                    })
+                    $block = $(`<div class="d-flex flex-column-row"></div>`);
+
+                    for (var i = 0; i < e.target.files.length; i++) {
+                        let fileName = e.target.files[i].name;
+                        console.log("------", fileName);
+
+                        $block.prepend(`
+        <div class="col-md-2>
+              <img scr="${URL.createObjectURL(e.target.files[i])}
+               width="100%"/>
+        `)
+                        //$("#contentImage").prepend(`
+                        //        <div class="col-md-2">
+                        //            <img src="${URL.createObjectURL(e.target.files[i])}"
+                        //                 width="100%"/>
+                        //        </div>
+                        //    `);
+                    }
+                    $block.append($span);
+                    $("#contentImage").prepend($block)
                 }
 
-            }
-
+            });
         });
-    });
-</script>
-}
+    </script>
+    }*@
+
 

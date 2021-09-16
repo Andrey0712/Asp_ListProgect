@@ -1,20 +1,18 @@
-﻿@model IEnumerable<ASP_ProductList.Models.ProductItemViewModel>
+﻿@model IEnumerable<ASP_ProductList.Models.ProductViewModel>
+
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Home Page";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
             </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -28,29 +26,35 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @foreach (var img in item.Images)
-                {
-                    <img src="@img.Path" width="150" class="mx-2">
-                }
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @foreach (var img in item.Images)
+                    {
+                        <img src="@img.Path" width="150" class="mx-2">
+                    }
+                </td>
+                <td style="text-align:center">
+                    <a class="text-success" asp-controller="Home" asp-action="Edit" asp-route-id="@item.Id">Змінити</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a class="text-danger " asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id">Видалити</a>
+
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+@*<div class="text-center">
+        <h1 class="display-1">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@
