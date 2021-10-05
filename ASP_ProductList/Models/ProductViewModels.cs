@@ -50,4 +50,9 @@ namespace ASP_ProductList.Models
         [Display(Name = "Фото")]
         public List<IFormFile> Images { get; set; }
     }
+    public class ProductOptionViewModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
 }

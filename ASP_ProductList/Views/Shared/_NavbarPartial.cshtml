@@ -1,0 +1,100 @@
+﻿@using ASP_ProductList.Utils
+@using Microsoft.Extensions.Localization
+@using ASP_ProductList.Controllers
+@inject IStringLocalizer<HomeController> Localizer
+
+@{
+    string curLang = "uk";
+    string pathLang = this.ViewContext.RouteData.Values["lang"] as string;
+    if (pathLang != null)
+    {
+        curLang = pathLang;
+    }
+
+    List<LocalizationViewModel> langs = LocalizationLanguages.GetLanguages();
+
+    var request = this.ViewContext.HttpContext.Request;
+
+    var currPath = string.Format("/{0}/{1}", this.ViewContext.RouteData.Values["controller"].ToString(),
+        this.ViewContext.RouteData.Values["action"].ToString());
+
+    var host = string.Format("{0}://{1}", request.Scheme, request.Host);
+    string fullPath = string.Format("{0}/{{0}}{1}", host, currPath);
+
+
+
+    //string curLang = "uk";
+    //if (this.ViewContext.RouteData.Values["lang"] != null)
+    //{
+    //    curLang = this.ViewContext.RouteData.Values["lang"].ToString();
+    //}
+    //var listLang = LocalizationLanguages.GetLanguages();
+    //var request = ViewContext.HttpContext.Request;
+    //var targetPath = string.Format("/{0}/{1}",
+    //   ViewContext.RouteData.Values["controller"].ToString(),
+    //   ViewContext.RouteData.Values["action"].ToString());
+
+    ////request..Url.Query);
+    //var hostRoot = string.Format("{0}://{1}", request.Scheme, request.Host);
+    //var targetUrlMask = string.Format("{0}/{{0}}{1}", hostRoot, targetPath);
+
+}
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["ProductShop"]</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav  me-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Privacy"]</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area=""
+                       asp-controller="Home" asp-action="Create">@Localizer["Add"]</a>
+                </li>
+            </ul>
+
+            @*<ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        @curLang
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @foreach (var lang in listLang)
+                        {
+                            string langActive = lang == curLang ? "active" : "";
+
+                            <li>
+                                <a class="dropdown-item @langActive"
+                                   href="@(string.Format(targetUrlMask, lang))">
+                                    @lang
+                                </a>
+                            </li>
+                        }
+                    </ul>*@
+
+                    <ul class="navbar navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-target="#langMenu">
+                                <span style="font-size:17px;"><span class="fa fa-language"></span> @langs.FirstOrDefault(x => x.locCode == curLang)?.locName</span>
+                            </a>
+                            <div class="dropdown-menu" id="langMenu">
+                                @foreach (var item in langs)
+                                {
+                                    string active = item.locCode == curLang ? "active" : "";
+                                    <a class="dropdown-item @active" href="@(string.Format(fullPath, item.locCode))">
+                                        @item.locName
+                                    </a>
+                                }
+                            </div>
+                        </li>
+                    </ul>
+        </div>
+    </div>
+</nav>

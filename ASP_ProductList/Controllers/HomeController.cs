@@ -3,6 +3,7 @@ using AppProductList.Data.Entities;
 using ASP_ProductList.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -16,15 +17,22 @@ namespace ASP_ProductList.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IStringLocalizer<HomeController> _localizer;
         public EFAppContext _context { get; set; }
-        public HomeController(ILogger<HomeController> logger, EFAppContext context)
+        public HomeController(ILogger<HomeController> logger,
+            IStringLocalizer<HomeController> localizer,
+            EFAppContext context)
         {
             _logger = logger;
             _context = context;
+            _localizer = localizer;
         }
 
+        #region Default
         public IActionResult Index()
         {
+            //  Отримання Email на контроллері
+            ViewBag.Email = _localizer["Email"];
             var model = _context.Products
                 .Include(i => i.ProductImages)
                 .Select(x => new ProductViewModel
@@ -40,6 +48,18 @@ namespace ASP_ProductList.Controllers
 
             return View(model);
         }
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        #endregion
 
         #region Create
         [HttpGet]
@@ -224,17 +244,5 @@ namespace ASP_ProductList.Controllers
 
 
 
-        #region
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-        #endregion
     }
 }
