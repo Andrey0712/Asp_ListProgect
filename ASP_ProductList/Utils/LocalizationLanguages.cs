@@ -15,7 +15,7 @@ namespace ASP_ProductList.Utils
         //    return Languages;
         //}
 
-        //  Створення і ініціалізація колекції мов
+        //Створення і ініціалізація колекції мов
         private static IList<LocalizationViewModel> Languages { get; set; } = new List<LocalizationViewModel> {
             new LocalizationViewModel{
                 locCode = "uk",

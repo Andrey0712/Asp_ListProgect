@@ -1,5 +1,6 @@
 ﻿using AppProductList.Data;
 using AppProductList.Data.Entities;
+using ASP_ProductList.ActionFilter;
 using ASP_ProductList.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,12 +15,19 @@ using System.Threading.Tasks;
 
 namespace ASP_ProductList.Controllers
 {
+    [Internalization]
     public class HomeController : Controller
     {
+       
+       
+        
         private readonly ILogger<HomeController> _logger;
+ //  Створення обєкту IStringLocalizer<HomeController>, щоб отримати дані з
+        //  ресурсів на контроллері
         private readonly IStringLocalizer<HomeController> _localizer;
         public EFAppContext _context { get; set; }
         public HomeController(ILogger<HomeController> logger,
+//  Ініціалізація IStringLocalizer<HomeController>
             IStringLocalizer<HomeController> localizer,
             EFAppContext context)
         {

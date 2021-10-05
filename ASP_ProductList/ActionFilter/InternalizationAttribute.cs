@@ -15,8 +15,8 @@ namespace ASP_ProductList.ActionFilter
     public class InternalizationAttribute : ActionFilterAttribute
     {
         //  Колеція підтримуваних мов
-        private List<string> _locales { get; set; }
-        //private readonly IList<string> _locales;
+        //private List<string> _locales { get; set; }
+        private readonly IList<string> _locales;
         //  Мова за замовчанням
         private string _defaultLocale { get; set; }
 
