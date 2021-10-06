@@ -1,55 +1,59 @@
 ﻿@model ASP_ProductList.Models.AddProductViewModel
 
+@using Microsoft.Extensions.Localization
+@using ASP_ProductList.Controllers
+@inject IStringLocalizer<HomeController> Localizer
+
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = @Localizer["Create"];
 }
 
 @*<h1>Create</h1>*@
 
-<h4>Створення продукту</h4>
+<h4>@Localizer["Create product"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-6">
-        <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Create" >
+        <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">@Localizer["Name"]</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
+                <label asp-for="Price" class="control-label">@Localizer["Price"]</label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="Images" class="form-label">Фото</label>
+                <label asp-for="Images" class="form-label">@Localizer["Images"]</label>
                 <div class="row" id="contentImage">
                     <div class="col-md-2">
                         <img src="~/img/addimagebtn.png"
-                        id="btnAddImage"
-                        style="cursor:pointer"
-                        width="100%" />
+                             id="btnAddImage"
+                             style="cursor:pointer"
+                             width="100%" />
                     </div>
                 </div>
 
             </div>
 
             <div class="form-group mt-5">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value=@Localizer["Create"] class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">@Localizer["Back to List"]</a>
 </div>
 
 @*@section Styles{
-    <link href="~/css/style.css" rel="stylesheet" />
+        <link href="~/css/style.css" rel="stylesheet" />
 
-}*@
+    }*@
 
 @section Scripts{
     <script>
@@ -60,9 +64,9 @@
                 let imageName = "image" + id;
                 id++;
                 let $file = $(`<input type="file" data-files style="display:none" multiple
-                                class="form-control"
-                                id="${imageName}"
-                                name="images">`);
+                                    class="form-control"
+                                    id="${imageName}"
+                                    name="images">`);
                 $("#contentImage").prepend($file);
 
                 document.getElementById(imageName).click();
@@ -79,7 +83,7 @@
                         let $div = $(`<div class="col-md-2">`);
                         let $span = $(` <span class="file-delete" style="transform: rotate(45deg)"><span>+</span></span>`);
                         let $content = $(`<img src="${URL.createObjectURL(e.target.files[i])}"
-                                         width="100%"/>`);
+                                             width="100%"/>`);
                         $div.prepend($span);
                         $div.prepend($content);
                         $("#contentImage").prepend($div);
@@ -87,9 +91,9 @@
                             e.preventDefault();
                             $(this).closest("div").remove();
                             let $filedel = $(`<input type="file" data-files style="display:none" multiple
-                                class="form-control"
-                                id="${imageName}"
-                                name="images">`);
+                                    class="form-control"
+                                    id="${imageName}"
+                                    name="images">`);
                             $("#contentImage").prepend($filedel);
                         });
 

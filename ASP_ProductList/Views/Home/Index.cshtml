@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<ASP_ProductList.Models.ProductViewModel>
 
+@using Microsoft.Extensions.Localization
+@using ASP_ProductList.Controllers
+@inject IStringLocalizer<HomeController> Localizer
 
 @{
     ViewData["Title"] = "Home Page";
@@ -9,7 +12,12 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <td scope="col">@Localizer["Id"]</td>
+            <td scope="col">@Localizer["Name"]</td>
+            <td scope="col">@Localizer["Price"]</td>
+            <td style="text-align:center" scope="col">@Localizer["Images"]</td>
+            <td style="text-align:center" scope="col">@Localizer["Action"]</td>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Id)
             </th>
 
@@ -22,7 +30,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Images)
             </th>
-            <th></th>
+            <th></th>*@
         </tr>
     </thead>
     <tbody>
@@ -45,17 +53,14 @@
                     }
                 </td>
                 <td style="text-align:center">
-                    <a class="text-success" asp-controller="Home" asp-action="Edit" asp-route-id="@item.Id">Змінити</a>
+                    <a class="text-success" asp-controller="Home" asp-action="Edit" asp-route-id="@item.Id">@Localizer["Change"]</a>
                     &nbsp;&nbsp;&nbsp;
-                    <a class="text-danger " asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id">Видалити</a>
+                    <a class="text-danger " asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id">@Localizer["Delete"]</a>
 
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<div class="text-center">
-        <h1 class="display-1">Welcome</h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    </div>
+
 

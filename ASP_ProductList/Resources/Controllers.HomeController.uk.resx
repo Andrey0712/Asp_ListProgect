@@ -117,8 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>Дія</value>
+  </data>
   <data name="Add" xml:space="preserve">
     <value>Додати</value>
+  </data>
+  <data name="Are you sure you want to delete this?" xml:space="preserve">
+    <value>Ви впевнені, що хочете видалити це?</value>
+  </data>
+  <data name="Back to List" xml:space="preserve">
+    <value>Вернуться на главную</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Змінити</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="Create product" xml:space="preserve">
+    <value>Створення продукту</value>
+  </data>
+  <data name="Data editing" xml:space="preserve">
+    <value>Редагування даних</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Видалити</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Змінити</value>
@@ -138,13 +162,25 @@
   <data name="Name" xml:space="preserve">
     <value>Назва</value>
   </data>
+  <data name="Photos you add:" xml:space="preserve">
+    <value>Фото,які ви додаєте:</value>
+  </data>
   <data name="Price" xml:space="preserve">
     <value>Ціна</value>
   </data>
   <data name="Privacy" xml:space="preserve">
     <value>Приватна</value>
   </data>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>Політика конфіденційності</value>
+  </data>
   <data name="ProductShop" xml:space="preserve">
     <value>Магазин</value>
+  </data>
+  <data name="Save changes" xml:space="preserve">
+    <value>Зберегти зміни</value>
+  </data>
+  <data name="Use this page to detail your site's privacy policy" xml:space="preserve">
+    <value>Використовуйте цю сторінку для детального опису політики конфіденційності вашого сайту</value>
   </data>
 </root>
